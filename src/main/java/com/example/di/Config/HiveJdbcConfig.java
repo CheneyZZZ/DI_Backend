@@ -2,8 +2,6 @@ package com.example.di.Config;
 
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class HiveJdbcConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(HiveJdbcConfig.class);
 
     @Autowired
     private Environment env;
@@ -27,7 +24,6 @@ public class HiveJdbcConfig {
         dataSource.setDriverClassName(env.getProperty("hive.driver-class-name"));
 //        dataSource.setUsername(env.getProperty("hive.user"));
 //        dataSource.setPassword(env.getProperty("hive.password"));
-        logger.debug("Hive DataSource Inject Successfully...");
         return dataSource;
     }
 
