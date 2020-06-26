@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class DailySale {
     private Date date;
-    private int num;
+    private Long num;
 
     public DailySale(){}
-    public DailySale(Date date, int num){
+    public DailySale(Date date, Long num){
         this.date=date;
         this.num=num;
     }
     public void setDate(Date date){this.date=date;}
-    public void setNum(int num){this.num=num;}
+    public void setNum(Long num){this.num=num;}
     public Date getDate(){return date;}
-    public int getNum(){return num;}
+    public Long getNum(){return num;}
 }

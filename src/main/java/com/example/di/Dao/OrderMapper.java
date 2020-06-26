@@ -2,7 +2,6 @@ package com.example.di.Dao;
 
 import com.example.di.PO.DailyMoney;
 import com.example.di.PO.DailyQuantity;
-import com.example.di.PO.DailySale;
 import com.example.di.PO.TakeoutOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
