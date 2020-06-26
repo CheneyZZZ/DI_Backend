@@ -26,7 +26,6 @@ public class RestaurantMapper {
         }
         return restaurants;
     }
-
-    public Restaurant getRestaurantById(long id){Restaurant restaurant=new Restaurant(); return restaurant;}
+    
 
 }
