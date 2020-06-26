@@ -13,12 +13,13 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
-    @GetMapping("/getDailySale")
+    @GetMapping("/getDailySales")
     public ResponseVO getDailySale(){
+        System.out.println("arrive");
         return restaurantService.getDailySale();
     }
 
-    @GetMapping("/getWeeklySale")
+    @GetMapping("/getWeeklySales")
     public ResponseVO getWeeklySale(){
         return restaurantService.getWeeklySale();
     }

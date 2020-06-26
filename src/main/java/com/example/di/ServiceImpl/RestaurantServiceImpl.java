@@ -26,18 +26,19 @@ public class RestaurantServiceImpl implements RestaurantService {
     public ResponseVO getDailySale(){
         try{
             Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();//返回结果
+            Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
             for(int i=0;i<takeoutOrders.size();i++){//遍历订单
                 Date tempDate=takeoutOrders.get(i).getCreate_time();//当前订单date
                 if(!map.containsKey(tempDate) && takeoutOrders.get(i).getRestaurant_id()!=null ){
-                    Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrders.get(i).getRestaurant_id());
+                    Restaurant restaurant=restaurantMap.get(takeoutOrders.get(i).getRestaurant_id());
                     DailyRestaurant dailyRestaurant=new DailyRestaurant(restaurant,1);
                     Map<Long,DailyRestaurant> dailyRestaurants=new HashMap<Long,DailyRestaurant>();
                     dailyRestaurants.put(takeoutOrders.get(i).getRestaurant_id(),dailyRestaurant);
                     map.put(tempDate,dailyRestaurants);
                 }else{
                     if(takeoutOrders.get(i).getRestaurant_id()!=null && !map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
-                        Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrders.get(i).getRestaurant_id());
+                        Restaurant restaurant=restaurantMap.get(takeoutOrders.get(i).getRestaurant_id());
                         DailyRestaurant dailyRestaurant=new DailyRestaurant(restaurant,1);
                         map.get(tempDate).put(takeoutOrders.get(i).getRestaurant_id(),dailyRestaurant);
                     }else if(takeoutOrders.get(i).getRestaurant_id()!=null && map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
@@ -50,6 +51,7 @@ public class RestaurantServiceImpl implements RestaurantService {
             }
             return ResponseVO.buildSuccess(map);
         }catch (Exception e){
+            e.printStackTrace();
             return ResponseVO.buildFailure("返回商家每日销量失败");
         }
     }
@@ -59,6 +61,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         try{
             Map<Date,Map<Long,WeeklyRestaurant>> weeklyMap=new HashMap<Date, Map<Long,WeeklyRestaurant>>();
             Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();
+            Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
             Date beginDate=takeoutOrders.get(0).getCreate_time();
             Calendar calendar = new GregorianCalendar();
@@ -74,7 +77,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                     endDate=calendar.getTime();
                 }else{
                     if(!weeklyMap.containsKey(beginDate)&&takeoutOrder.getRestaurant_id()!=null){
-                        Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrder.getRestaurant_id());
+                        Restaurant restaurant=restaurantMap.get(takeoutOrder.getRestaurant_id());
                         WeeklyRestaurant weeklyRestaurant=new WeeklyRestaurant(restaurant,1);
                         Map<Long,WeeklyRestaurant> weeklyRestaurants=new HashMap<Long, WeeklyRestaurant>();
                         weeklyRestaurants.put(takeoutOrder.getRestaurant_id(),weeklyRestaurant);
@@ -82,7 +85,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                     }
                     else{
                         if(takeoutOrder.getRestaurant_id()!=null&&!weeklyMap.get(beginDate).containsKey(takeoutOrder.getRestaurant_id())){
-                            Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrder.getRestaurant_id());
+                            Restaurant restaurant=restaurantMap.get(takeoutOrder.getRestaurant_id());
                             WeeklyRestaurant weeklyRestaurant=new WeeklyRestaurant(restaurant,1);
                             weeklyMap.get(beginDate).put(takeoutOrder.getRestaurant_id(),weeklyRestaurant);
                         }
