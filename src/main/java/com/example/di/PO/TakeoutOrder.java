@@ -2,7 +2,7 @@ package com.example.di.PO;
 
 import java.util.Date;
 
-public class TakeoutOrder {
+public class TakeoutOrder implements Comparable<TakeoutOrder>{
     public TakeoutOrder(){}
     public TakeoutOrder(Long id,Date create_time,int type,Long price,Integer discount,Long user_id,Long restaurant_id){
         this.id=id;
@@ -75,5 +75,10 @@ public class TakeoutOrder {
 
     public void setRestaurant_id(Long restaurant_id) {
         this.restaurant_id = restaurant_id;
+    }
+
+    @Override
+    public int compareTo(TakeoutOrder takeoutOrder){
+        return this.create_time.compareTo(takeoutOrder.getCreate_time());
     }
 }

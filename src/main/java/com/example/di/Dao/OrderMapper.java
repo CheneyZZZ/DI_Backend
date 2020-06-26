@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class OrderMapper {
@@ -26,8 +23,9 @@ public class OrderMapper {
         String sql="select * from dws_quantity_d";
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         for(Map<String,Object> item:res){
-            dailyQuantities.add(new DailyQuantity((Date) item.get("dws_item_sale_d.day"), (Long) item.get("dws_item_sale_d.num")));
+            dailyQuantities.add(new DailyQuantity((Date) item.get("dws_quantity_d.day"), (Long) item.get("dws_quantity_d.num")));
         }
+        Collections.sort(dailyQuantities);
         return dailyQuantities;
     }
 
@@ -39,6 +37,7 @@ public class OrderMapper {
             BigDecimal amount=(BigDecimal) item.get("dws_amount_d.amount");
             dailyMonies.add(new DailyMoney((Date) item.get("dws_amount_d.day"),amount.doubleValue()));
         }
+        Collections.sort(dailyMonies);
         return dailyMonies;
     }
 
@@ -51,6 +50,7 @@ public class OrderMapper {
                     (Byte) item.get("dwd_takeout_orders.type"),(Long) item.get("dwd_takeout_orders.price"),(Integer) item.get("dwd_takeout_orders.discount"),
                     (Long) item.get("dwd_takeout_orders.user_id"),(Long) item.get("dwd_takeout_orders.restaurant_id")));
         }
+        //Collections.sort(takeoutOrders);
         return takeoutOrders;
     }
 }

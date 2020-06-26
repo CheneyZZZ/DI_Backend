@@ -20,5 +20,8 @@ public class ItemMapperTest {
     public void GetDailySaleTest() {
         List<DailySale> dailySales=itemMapper.getDailySale();
         Assert.assertEquals(30,dailySales.size());
+//        for(DailySale dailySale:dailySales){
+//            System.out.println(dailySale.getDate()+" "+dailySale.getNum());
+//        }
     }
 }

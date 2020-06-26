@@ -2,7 +2,7 @@ package com.example.di.PO;
 
 import java.util.Date;
 
-public class UserActive {
+public class UserActive implements Comparable<UserActive>{
     private Date date;
     private Long num;
 
@@ -15,4 +15,9 @@ public class UserActive {
     public void setNum(Long num){this.num=num;}
     public Date getDate(){return date;}
     public Long getNum(){return num;}
+
+    @Override
+    public int compareTo(UserActive userActive){
+        return this.date.compareTo(userActive.getDate());
+    }
 }

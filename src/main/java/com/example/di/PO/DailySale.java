@@ -1,10 +1,9 @@
 package com.example.di.PO;
 
-import org.apache.hadoop.yarn.webapp.hamlet.HamletSpec;
 
 import java.util.Date;
 
-public class DailySale {
+public class DailySale implements Comparable<DailySale>{
     private Date date;
     private Long num;
 
@@ -17,4 +16,9 @@ public class DailySale {
     public void setNum(Long num){this.num=num;}
     public Date getDate(){return date;}
     public Long getNum(){return num;}
+
+    @Override
+    public int compareTo(DailySale dailySale){
+        return this.date.compareTo(dailySale.getDate());
+    }
 }

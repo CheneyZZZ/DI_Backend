@@ -2,7 +2,7 @@ package com.example.di.PO;
 
 import java.util.Date;
 
-public class ActiveEvent {
+public class ActiveEvent implements Comparable<ActiveEvent>{
     private Date date;
     private Long total;
     private Long view;
@@ -28,4 +28,9 @@ public class ActiveEvent {
     public Long getView(){return view;}
     public Long getCart(){return cart;}
     public Long getBuy(){return buy;}
+
+    @Override
+    public int compareTo(ActiveEvent activeEvent){
+        return this.date.compareTo(activeEvent.getDate());
+    }
 }

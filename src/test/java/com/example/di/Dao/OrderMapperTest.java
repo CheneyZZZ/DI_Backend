@@ -2,7 +2,6 @@ package com.example.di.Dao;
 
 import com.example.di.PO.DailyMoney;
 import com.example.di.PO.DailyQuantity;
-import com.example.di.PO.DailySale;
 import com.example.di.PO.TakeoutOrder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,6 +22,9 @@ public class OrderMapperTest {
         List<DailyQuantity> dailyQuantities=orderMapper.getDailyQuentity();
         //System.out.println("quenty:"+dailyQuantities.size());
         Assert.assertEquals(171,dailyQuantities.size());
+//        for(DailyQuantity dailyQuantity:dailyQuantities){
+//            System.out.println(dailyQuantity.getDate()+" "+dailyQuantity.getNum());
+//        }
     }
 
     @Test
@@ -30,6 +32,9 @@ public class OrderMapperTest {
         List<DailyMoney> dailyMonies=orderMapper.getDailyMoney();
         //System.out.println("money:"+dailyMonies.size());
         Assert.assertEquals(171,dailyMonies.size());
+//        for(DailyMoney dailyMoney:dailyMonies){
+//            System.out.println(dailyMoney.getDate()+" "+dailyMoney.getAmount());
+//        }
     }
 
     @Test
@@ -37,5 +42,8 @@ public class OrderMapperTest {
         List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
         //System.out.println("takeout:"+takeoutOrders.size());
         Assert.assertEquals(2501,takeoutOrders.size());
+//        for(TakeoutOrder takeoutOrder:takeoutOrders){
+//            System.out.println(takeoutOrder.getCreate_time());
+//        }
     }
 }

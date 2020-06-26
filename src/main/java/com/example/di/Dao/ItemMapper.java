@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -25,6 +22,7 @@ public class ItemMapper {
         for(Map<String,Object> item:res){
             dailySales.add(new DailySale((Date) item.get("dws_item_sale_d.day"),(Long) item.get("dws_item_sale_d.num")));
         }
+        Collections.sort(dailySales);
         return dailySales;
     }
 }

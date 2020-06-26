@@ -9,10 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class FlowMapper {
@@ -27,6 +24,7 @@ public class FlowMapper {
         for(Map<String,Object> item:res){
             userActives.add(new UserActive((Date) item.get("dws_user_active_d.day"),(Long)item.get("dws_user_active_d.num")));
         }
+        Collections.sort(userActives);
         return userActives;
     }
 
@@ -38,6 +36,7 @@ public class FlowMapper {
             activeEvents.add(new ActiveEvent((Date) item.get("dws_event_active_d.day"),(Long)item.get("dws_event_active_d.total"),
                     (Long)item.get("dws_event_active_d.view"),(Long)item.get("dws_event_active_d.cart"),(Long)item.get("dws_event_active_d.buy")));
         }
+        Collections.sort(activeEvents);
         return activeEvents;
     }
 

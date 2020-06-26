@@ -2,7 +2,7 @@ package com.example.di.PO;
 
 import java.util.Date;
 
-public class DailyMoney {
+public class DailyMoney implements Comparable<DailyMoney>{
     private Date date;
     private double amount;
 
@@ -16,5 +16,10 @@ public class DailyMoney {
     public Date getDate(){return date;}
     public double getAmount() {
         return amount;
+    }
+
+    @Override
+    public int compareTo(DailyMoney dailyMoney){
+        return this.date.compareTo(dailyMoney.getDate());
     }
 }

@@ -23,12 +23,18 @@ public class FlowMapperTest {
     public void getUserActiveTest(){
         List<UserActive> userActives=flowMapper.getUserActive();
         Assert.assertEquals(30,userActives.size());
+//        for(UserActive userActive:userActives){
+//            System.out.println(userActive.getDate()+" "+userActive.getNum());
+//        }
     }
 
     @Test
     public void getActiveEventTest() {
         List<ActiveEvent> activeEvents=flowMapper.getActiveEvent();
         Assert.assertEquals(30,activeEvents.size());
+//        for(ActiveEvent activeEvent:activeEvents){
+//            System.out.println(activeEvent.getDate()+" "+activeEvent.getTotal());
+//        }
     }
 
     @Test
