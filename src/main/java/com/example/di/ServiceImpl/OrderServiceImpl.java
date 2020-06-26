@@ -74,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
                     num=num+dateTemp.get(i+j).getAmount();
                 }
                 weeklyMoney.setAmount(num);
+                weeklyMonies.add(weeklyMoney);
                 i=i+7;
             }
             return ResponseVO.buildSuccess(weeklyMonies);
