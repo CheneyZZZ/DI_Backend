@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,8 +40,10 @@ public class UserServiceImpl implements UserService {
                     }
                 }
             }
-            ratio=(double)maleNum/femaleNum;
-            return ResponseVO.buildSuccess(ratio);
+            Map<String,Integer> count=new HashMap<>();
+            count.put("male",maleNum);
+            count.put("female",femaleNum);
+            return ResponseVO.buildSuccess(count);
         }catch (Exception e){
             return ResponseVO.buildFailure("返回男女比失败");
         }
