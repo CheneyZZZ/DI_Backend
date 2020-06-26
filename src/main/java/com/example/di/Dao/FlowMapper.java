@@ -3,17 +3,28 @@ package com.example.di.Dao;
 import com.example.di.PO.ActiveEvent;
 import com.example.di.PO.UserActionRatio;
 import com.example.di.PO.UserActive;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
 @Service
-public interface FlowMapper {
-    public List<UserActive> getUserActive();
+public class FlowMapper {
+    @Autowired
+    @Qualifier("hiveDruidTemplate")
+    private JdbcTemplate hiveDruidTemplate;
 
-    public List<ActiveEvent> getActiveEvent();
+    public List<UserActive> getUserActive(){
+        return null;
+    }
 
-    public List<UserActionRatio> getUserActionRatio();
+    public List<ActiveEvent> getActiveEvent(){
+        return null;
+    }
+
+    public List<UserActionRatio> getUserActionRatio(){
+        return null;
+    }
 }

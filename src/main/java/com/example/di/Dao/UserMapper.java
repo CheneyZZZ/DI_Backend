@@ -1,16 +1,27 @@
 package com.example.di.Dao;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
 @Service
-public interface UserMapper {
-    public int getFemaleNum();
+public class UserMapper {
+    @Autowired
+    @Qualifier("hiveDruidTemplate")
+    private JdbcTemplate hiveDruidTemplate;
 
-    public int getMaleNum();
+    public int getFemaleNum(){
+        return 0;
+    }
 
-    public List<String> getRegins();
+    public int getMaleNum(){
+        return 0;
+    }
+
+    public List<String> getRegins(){
+        return null;
+    }
 }

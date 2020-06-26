@@ -1,13 +1,13 @@
 package com.example.di.PO;
 
 public class Restaurant {
-    private int id;
+    private Long id;
     private String name;
     private String location;
     private String tel;
 
     public Restaurant(){}
-    public Restaurant(int id,String name,String location,String tel){
+    public Restaurant(Long id,String name,String location,String tel){
         this.id=id;
         this.name=name;
         this.location=location;
@@ -22,11 +22,11 @@ public class Restaurant {
         return name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

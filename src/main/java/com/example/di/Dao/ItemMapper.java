@@ -1,13 +1,21 @@
 package com.example.di.Dao;
 
 import com.example.di.PO.DailySale;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
+
 @Service
-public interface ItemMapper {
-    public List<DailySale> getDailySale();
+public class ItemMapper {
+    @Autowired
+    @Qualifier("hiveDruidTemplate")
+    private JdbcTemplate hiveDruidTemplate;
+
+    public List<DailySale> getDailySale(){
+        return null;
+    }
 }

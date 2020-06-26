@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class RestaurantRepository {
+public class RestaurantMapper {
     @Autowired
     @Qualifier("hiveDruidTemplate")
     private JdbcTemplate hiveDruidTemplate;
@@ -22,7 +22,7 @@ public class RestaurantRepository {
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         List<Restaurant> restaurants=new ArrayList<>();
         for(Map<String,Object> item:res){
-            restaurants.add(new Restaurant((Integer)item.get("id"),(String)item.get("name"),(String)item.get("location"),(String)item.get("tel")));
+            restaurants.add(new Restaurant((Long)item.get("dwd_restaurant.id"),(String)item.get("dwd_restaurant.name"),(String)item.get("dwd_restaurant.location"),(String)item.get("dwd_restaurant.tel")));
         }
         return restaurants;
     }
