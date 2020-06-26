@@ -13,6 +13,8 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    //订单销量
+
     @GetMapping("/getDailySales")
     public ResponseVO getDailySales(){
         return orderService.getDailySales();
@@ -22,6 +24,9 @@ public class OrderController {
     public ResponseVO getWeeklySales(){
         return orderService.getWeeklySales();
     }
+
+
+    //订单金额
 
     @GetMapping("/getDailyMoney")
     public ResponseVO getDailyMoney(){

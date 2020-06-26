@@ -13,6 +13,9 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+
+    //商品销量
+
     @GetMapping("/getDailySales")
     public ResponseVO getDailySales(){
         return itemService.getDailySales();
