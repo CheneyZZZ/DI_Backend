@@ -5,10 +5,10 @@ import java.util.Date;
 public class WeeklySale {
     private Date beginDate;
     private Date endDate;
-    private int num;
+    private Long num;
 
     public WeeklySale(){}
-    public WeeklySale(Date beginDate, Date endDate, int num){
+    public WeeklySale(Date beginDate, Date endDate, Long num){
         this.beginDate=beginDate;
         this.endDate=endDate;
         this.num=num;
@@ -16,9 +16,9 @@ public class WeeklySale {
 
     public void setBeginDate(Date beginDate){this.beginDate=beginDate;}
     public void setEndDate(Date endDate){this.endDate=endDate;}
-    public void setNum(int num){this.num=num;}
+    public void setNum(Long num){this.num=num;}
 
     public Date getBeginDate(){return beginDate;}
     public Date getEndDate(){return endDate;}
-    public int getNum(){return num;}
+    public Long getNum(){return num;}
 }

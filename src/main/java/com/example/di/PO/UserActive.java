@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class UserActive {
     private Date date;
-    private int num;
+    private Long num;
 
     public UserActive(){}
-    public UserActive(Date date, int num){
+    public UserActive(Date date, Long num){
         this.date=date;
         this.num=num;
     }
     public void setDate(Date date){this.date=date;}
-    public void setNum(int num){this.num=num;}
+    public void setNum(Long num){this.num=num;}
     public Date getDate(){return date;}
-    public int getNum(){return num;}
+    public Long getNum(){return num;}
 }

@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
             int i=0;
             while(dateTemp.size()-i>6){
                 WeeklySale itemWeeklySale=new WeeklySale();
-                int num=0;
+                Long num=0L;
                 itemWeeklySale.setBeginDate(dateTemp.get(i).getDate());
                 itemWeeklySale.setEndDate(dateTemp.get(i+6).getDate());
                 for(int j=0;j<7;j++){

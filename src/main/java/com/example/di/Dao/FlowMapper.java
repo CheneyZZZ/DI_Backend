@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FlowMapper {
@@ -17,14 +20,34 @@ public class FlowMapper {
     private JdbcTemplate hiveDruidTemplate;
 
     public List<UserActive> getUserActive(){
-        return null;
+        List<UserActive> userActives=new ArrayList<>();
+        String sql="select * from dws_user_active_d";
+        List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
+        for(Map<String,Object> item:res){
+            userActives.add(new UserActive((Date) item.get("dws_user_active_d.day"),(Long)item.get("dws_user_active_d.num")));
+        }
+        return userActives;
     }
 
     public List<ActiveEvent> getActiveEvent(){
-        return null;
+        List<ActiveEvent> activeEvents=new ArrayList<>();
+        String sql="select * from dws_event_active_d";
+        List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
+        for(Map<String,Object> item:res){
+            activeEvents.add(new ActiveEvent((Date) item.get("dws_event_active_d.day"),(Long)item.get("dws_event_active_d.total"),
+                    (Long)item.get("dws_event_active_d.view"),(Long)item.get("dws_event_active_d.cart"),(Long)item.get("dws_event_active_d.buy")));
+        }
+        return activeEvents;
     }
 
     public List<UserActionRatio> getUserActionRatio(){
-        return null;
+        List<UserActionRatio> userActionRatios=new ArrayList<>();
+        String sql="select * from dws_user_ratio";
+        List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
+        for(Map<String,Object> item:res){
+            userActionRatios.add(new UserActionRatio((Long)item.get("dws_user_ratio.user_id"),(Integer)item.get("dws_user_ratio.gender"),(Double)item.get("dws_user_ratio.view_cart"),
+                    (Double)item.get("dws_user_ratio.view_buy"),(Double)item.get("dws_user_ratio.cart_buy ")));
+        }
+        return userActionRatios;
     }
 }

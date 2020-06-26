@@ -20,35 +20,37 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseVO getDailySales(){
-        try {
-            List<DailySale> dateTemp = orderMapper.getDailySale();
-            return ResponseVO.buildSuccess(dateTemp);
-        }catch (Exception e){
-            return ResponseVO.buildFailure("返回每日订单销量失败");
-        }
+//        try {
+//            List<DailySale> dateTemp = orderMapper.getDailySale();
+//            return ResponseVO.buildSuccess(dateTemp);
+//        }catch (Exception e){
+//            return ResponseVO.buildFailure("返回每日订单销量失败");
+//        }
+        return null;
     }
 
     @Override
     public ResponseVO getWeeklySales(){
-        try{
-            List<DailySale> dateTemp = orderMapper.getDailySale();
-            List<WeeklySale> weeklySales=new ArrayList<>();
-            int i=0;
-            while(dateTemp.size()-i>6){
-                WeeklySale weeklySale=new WeeklySale();
-                int num=0;
-                weeklySale.setBeginDate(dateTemp.get(i).getDate());
-                weeklySale.setEndDate(dateTemp.get(i+6).getDate());
-                for(int j=0;j<7;j++){
-                    num=num+dateTemp.get(i+j).getNum();
-                }
-                weeklySale.setNum(num);
-                i=i+7;
-            }
-            return ResponseVO.buildSuccess(weeklySales);
-        }catch (Exception e){
-            return ResponseVO.buildFailure("返回每周订单销量失败");
-        }
+//        try{
+//            List<DailySale> dateTemp = orderMapper.getDailySale();
+//            List<WeeklySale> weeklySales=new ArrayList<>();
+//            int i=0;
+//            while(dateTemp.size()-i>6){
+//                WeeklySale weeklySale=new WeeklySale();
+//                int num=0;
+//                weeklySale.setBeginDate(dateTemp.get(i).getDate());
+//                weeklySale.setEndDate(dateTemp.get(i+6).getDate());
+//                for(int j=0;j<7;j++){
+//                    num=num+dateTemp.get(i+j).getNum();
+//                }
+//                weeklySale.setNum(num);
+//                i=i+7;
+//            }
+//            return ResponseVO.buildSuccess(weeklySales);
+//        }catch (Exception e){
+//            return ResponseVO.buildFailure("返回每周订单销量失败");
+//        }
+        return null;
     }
 
     @Override

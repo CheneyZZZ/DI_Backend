@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class ActiveEvent {
     private Date date;
-    private int total;
-    private int view;
-    private int cart;
-    private int buy;
+    private Long total;
+    private Long view;
+    private Long cart;
+    private Long buy;
 
     public ActiveEvent(){}
-    public ActiveEvent(Date date,int total,int view,int cart,int buy){
+    public ActiveEvent(Date date,Long total,Long view,Long cart,Long buy){
         this.date=date;
         this.total=total;
         this.view=view;
@@ -18,14 +18,14 @@ public class ActiveEvent {
         this.buy=buy;
     }
     public void setDate(Date date){this.date=date;}
-    public void setTotal(int total){this.total=total;}
-    public void setView(int view){this.view=view;}
-    public void setCart(int cart){this.cart=cart;}
-    public void setBuy(int buy){this.buy=buy;}
+    public void setTotal(Long total){this.total=total;}
+    public void setView(Long view){this.view=view;}
+    public void setCart(Long cart){this.cart=cart;}
+    public void setBuy(Long buy){this.buy=buy;}
 
     public Date getDate(){return date;}
-    public int getTotal(){return total;}
-    public int getView(){return view;}
-    public int getCart(){return cart;}
-    public int getBuy(){return buy;}
+    public Long getTotal(){return total;}
+    public Long getView(){return view;}
+    public Long getCart(){return cart;}
+    public Long getBuy(){return buy;}
 }

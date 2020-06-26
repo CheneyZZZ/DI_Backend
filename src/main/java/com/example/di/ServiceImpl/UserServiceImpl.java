@@ -18,13 +18,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO getGenderRatio(){
-        try{
-            double ratio=0.0;
-            ratio=userMapper.getMaleNum()/userMapper.getFemaleNum();
-            return ResponseVO.buildSuccess(ratio);
-        }catch (Exception e){
-            return ResponseVO.buildFailure("返回男女比失败");
-        }
+//        try{
+//            double ratio=0.0;
+//            ratio=userMapper.getMaleNum()/userMapper.getFemaleNum();
+//            return ResponseVO.buildSuccess(ratio);
+//        }catch (Exception e){
+//            return ResponseVO.buildFailure("返回男女比失败");
+//        }
+        return null;
     }
 
     @Override
