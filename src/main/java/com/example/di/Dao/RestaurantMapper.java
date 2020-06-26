@@ -27,6 +27,15 @@ public class RestaurantMapper {
         return restaurants;
     }
 
-    public Restaurant getRestaurantById(long id){Restaurant restaurant=new Restaurant(); return restaurant;}
+    public Restaurant getRestaurantById(long id){
+        String sql="select * from dwd_restaurant where id="+id;
+        List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
+        if(res.size()<1){
+            return null;
+        }
+        Map<String,Object> item=res.get(0);
+        Restaurant restaurant=new Restaurant((Long)item.get("dwd_restaurant.id"),(String)item.get("dwd_restaurant.name"),(String)item.get("dwd_restaurant.location"),(String)item.get("dwd_restaurant.tel"));
+        return restaurant;
+    }
 
 }

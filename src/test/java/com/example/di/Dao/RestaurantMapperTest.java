@@ -21,4 +21,10 @@ public class RestaurantMapperTest {
         List<Restaurant> restaurants=restaurantRepository.getAllResaurants();
         Assert.assertEquals(50,restaurants.size());
     }
+
+    @Test
+    public void getResuaurantTest(){
+        Restaurant restaurant=restaurantRepository.getRestaurantById(1);
+        Assert.assertEquals("餐厅0",restaurant.getName());
+    }
 }
