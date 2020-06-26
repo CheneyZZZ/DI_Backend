@@ -1,6 +1,7 @@
 package com.example.di.ServiceImpl;
 
 import com.example.di.Dao.UserMapper;
+import com.example.di.PO.UserGenderInfo;
 import com.example.di.Service.UserService;
 import com.example.di.VO.ResponseVO;
 import org.jcodings.util.Hash;
@@ -18,14 +19,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO getGenderRatio(){
-//        try{
-//            double ratio=0.0;
-//            ratio=userMapper.getMaleNum()/userMapper.getFemaleNum();
-//            return ResponseVO.buildSuccess(ratio);
-//        }catch (Exception e){
-//            return ResponseVO.buildFailure("返回男女比失败");
-//        }
-        return null;
+        try{
+            double ratio=0.0;
+            int maleNum=0;
+            int femaleNum=0;
+            List<UserGenderInfo> temp=userMapper.getGenderInfos();
+            for(int i=0;i<temp.size();i++){
+                if(temp.get(i).getShop_identity_card_type()== 1&& temp.get(i).getShop_identity_cart_no().length()==18){
+                    if((temp.get(i).getShop_identity_cart_no().charAt(16)-'0')%2==1){
+                        maleNum=maleNum+1;
+                    }else{
+                        femaleNum=femaleNum+1;
+                    }
+                }else{
+                    if(temp.get(i).getShop_gender()==0){
+                        maleNum=maleNum+1;
+                    }else{
+                        femaleNum=femaleNum+1;
+                    }
+                }
+            }
+            ratio=(double)maleNum/femaleNum;
+            return ResponseVO.buildSuccess(ratio);
+        }catch (Exception e){
+            return ResponseVO.buildFailure("返回男女比失败");
+        }
     }
 
     @Override
