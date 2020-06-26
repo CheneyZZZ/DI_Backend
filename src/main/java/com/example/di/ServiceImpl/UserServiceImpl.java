@@ -64,10 +64,11 @@ public class UserServiceImpl implements UserService {
                     reginNums.set(j,reginNums.get(j)+1);
                 }
             }
-            List<List> reginNumsCouple=new ArrayList<>();
-            reginNumsCouple.add(regins);
-            reginNumsCouple.add(reginNums);
-            return ResponseVO.buildSuccess(reginNumsCouple);
+            Map<String,Integer> count=new HashMap<>();
+            for(int i=0;i<regins.size();i++){
+                count.put(regins.get(i),reginNums.get(i));
+            }
+            return ResponseVO.buildSuccess(count);
         }catch (Exception e){
             return ResponseVO.buildFailure("返回地区分布失败");
         }
