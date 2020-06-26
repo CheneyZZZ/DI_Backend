@@ -18,7 +18,7 @@ public class RestaurantController {
         return restaurantService.getDailySale();
     }
 
-    @GetMapping("/getRegionList")
+    @GetMapping("/getWeeklySale")
     public ResponseVO getWeeklySale(){
         return restaurantService.getWeeklySale();
     }

@@ -19,26 +19,28 @@ import java.util.*;
 public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     private RestaurantMapper restaurantMapper;
+    @Autowired
     private OrderMapper orderMapper;
 
     @Override
     public ResponseVO getDailySale(){
         try{
-            Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();
+            Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();//返回结果
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
-            for(int i=0;i<takeoutOrders.size();i++){
-                Date tempDate=takeoutOrders.get(i).getCreate_time();
-                if(!map.containsKey(tempDate)&&takeoutOrders.get(i).getRestaurant_id()!=null){
+            for(int i=0;i<takeoutOrders.size();i++){//遍历订单
+                Date tempDate=takeoutOrders.get(i).getCreate_time();//当前订单date
+                if(!map.containsKey(tempDate) && takeoutOrders.get(i).getRestaurant_id()!=null ){
                     Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrders.get(i).getRestaurant_id());
                     DailyRestaurant dailyRestaurant=new DailyRestaurant(restaurant,1);
                     Map<Long,DailyRestaurant> dailyRestaurants=new HashMap<Long,DailyRestaurant>();
+                    dailyRestaurants.put(takeoutOrders.get(i).getRestaurant_id(),dailyRestaurant);
                     map.put(tempDate,dailyRestaurants);
                 }else{
-                    if(takeoutOrders.get(i).getRestaurant_id()!=null&&!map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
+                    if(takeoutOrders.get(i).getRestaurant_id()!=null && !map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
                         Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrders.get(i).getRestaurant_id());
                         DailyRestaurant dailyRestaurant=new DailyRestaurant(restaurant,1);
                         map.get(tempDate).put(takeoutOrders.get(i).getRestaurant_id(),dailyRestaurant);
-                    }else if(takeoutOrders.get(i).getRestaurant_id()!=null&&map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
+                    }else if(takeoutOrders.get(i).getRestaurant_id()!=null && map.get(tempDate).containsKey(takeoutOrders.get(i).getRestaurant_id())){
                         long tempNum=map.get(tempDate).get(takeoutOrders.get(i).getRestaurant_id()).getNum()+1;
                         DailyRestaurant dailyRestaurant=map.get(tempDate).get(takeoutOrders.get(i).getRestaurant_id());
                         dailyRestaurant.setNum(tempNum);
@@ -75,6 +77,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                         Restaurant restaurant=restaurantMapper.getRestaurantById(takeoutOrder.getRestaurant_id());
                         WeeklyRestaurant weeklyRestaurant=new WeeklyRestaurant(restaurant,1);
                         Map<Long,WeeklyRestaurant> weeklyRestaurants=new HashMap<Long, WeeklyRestaurant>();
+                        weeklyRestaurants.put(takeoutOrder.getRestaurant_id(),weeklyRestaurant);
                         weeklyMap.put(beginDate,weeklyRestaurants);
                     }
                     else{
