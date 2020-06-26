@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,11 +43,14 @@ public class FlowMapper {
 
     public List<UserActionRatio> getUserActionRatio(){
         List<UserActionRatio> userActionRatios=new ArrayList<>();
-        String sql="select * from dws_user_ratio";
+        String sql="select * from dws_user_ratio where view_cart is not null and view_buy is not null and cart_buy is not null";
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         for(Map<String,Object> item:res){
-            userActionRatios.add(new UserActionRatio((Long)item.get("dws_user_ratio.user_id"),(Integer)item.get("dws_user_ratio.gender"),(Double)item.get("dws_user_ratio.view_cart"),
-                    (Double)item.get("dws_user_ratio.view_buy"),(Double)item.get("dws_user_ratio.cart_buy ")));
+            BigDecimal view_cart=(BigDecimal) item.get("dws_user_ratio.view_cart");
+            BigDecimal view_buy=(BigDecimal)item.get("dws_user_ratio.view_buy");
+            BigDecimal cart_buy=(BigDecimal)item.get("dws_user_ratio.cart_buy") ;
+            userActionRatios.add(new UserActionRatio((Long)item.get("dws_user_ratio.user_id"),(Byte)item.get("dws_user_ratio.gender"),view_cart.doubleValue(),
+                    view_buy.doubleValue(),cart_buy.doubleValue()));
         }
         return userActionRatios;
     }

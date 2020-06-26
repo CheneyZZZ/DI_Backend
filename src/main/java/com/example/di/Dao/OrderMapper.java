@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,9 +21,9 @@ public class OrderMapper {
     @Qualifier("hiveDruidTemplate")
     private JdbcTemplate hiveDruidTemplate;
 
-    public List<DailyQuantity> getDailySale(){
+    public List<DailyQuantity> getDailyQuentity(){
         List<DailyQuantity> dailyQuantities=new ArrayList<>();
-        String sql="select * from dws_item_quantity_d";
+        String sql="select * from dws_quantity_d";
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         for(Map<String,Object> item:res){
             dailyQuantities.add(new DailyQuantity((Date) item.get("dws_item_sale_d.day"), (Long) item.get("dws_item_sale_d.num")));
@@ -35,7 +36,8 @@ public class OrderMapper {
         String sql="select * from dws_amount_d";
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         for(Map<String,Object> item:res){
-            dailyMonies.add(new DailyMoney((Date) item.get("dws_amount_d.day"),(Double) item.get("dws_amount_d.amount")));
+            BigDecimal amount=(BigDecimal) item.get("dws_amount_d.amount");
+            dailyMonies.add(new DailyMoney((Date) item.get("dws_amount_d.day"),amount.doubleValue()));
         }
         return dailyMonies;
     }
@@ -46,7 +48,7 @@ public class OrderMapper {
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         for(Map<String,Object> item:res){
             takeoutOrders.add(new TakeoutOrder((Long) item.get("dwd_takeout_orders.id"),(Timestamp) item.get("dwd_takeout_orders.create_time"),
-                    (Integer) item.get("dwd_takeout_orders.type"),(Long) item.get("dwd_takeout_orders.price"),(Integer) item.get("dwd_takeout_orders.discount"),
+                    (Byte) item.get("dwd_takeout_orders.type"),(Long) item.get("dwd_takeout_orders.price"),(Integer) item.get("dwd_takeout_orders.discount"),
                     (Long) item.get("dwd_takeout_orders.user_id"),(Long) item.get("dwd_takeout_orders.restaurant_id")));
         }
         return takeoutOrders;

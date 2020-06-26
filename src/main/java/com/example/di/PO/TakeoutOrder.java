@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TakeoutOrder {
     public TakeoutOrder(){}
-    public TakeoutOrder(Long id,Date create_time,Integer type,Long price,Integer discount,Long user_id,Long restaurant_id){
+    public TakeoutOrder(Long id,Date create_time,int type,Long price,Integer discount,Long user_id,Long restaurant_id){
         this.id=id;
         this.create_time=create_time;
         this.type=type;
