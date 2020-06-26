@@ -50,7 +50,7 @@ public class OrderMapper {
                     (Byte) item.get("dwd_takeout_orders.type"),(Long) item.get("dwd_takeout_orders.price"),(Integer) item.get("dwd_takeout_orders.discount"),
                     (Long) item.get("dwd_takeout_orders.user_id"),(Long) item.get("dwd_takeout_orders.restaurant_id")));
         }
-        //Collections.sort(takeoutOrders);
+        Collections.sort(takeoutOrders);
         return takeoutOrders;
     }
 }

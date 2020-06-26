@@ -20,3 +20,6 @@ hive:
   # 打开PSCache，并且指定每个连接上PSCache的大小
   poolPreparedStatements: true
   maxPoolPreparedStatementPerConnectionSize: 20
+
+server:
+  port: 8090

@@ -1,6 +1,6 @@
 package com.example.di.Controller;
 
-import com.example.di.Service.ItemService;
+import com.example.di.Service.RestaurantService;
 import com.example.di.VO.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,21 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/item")
-public class ItemController {
+@RequestMapping("/restaurant")
+public class RestaurantController {
     @Autowired
-    private ItemService itemService;
-
-
-    //商品销量
+    private RestaurantService restaurantService;
 
     @GetMapping("/getDailySales")
-    public ResponseVO getDailySales(){
-        return itemService.getDailySales();
+    public ResponseVO getDailySale(){
+        System.out.println("arrive");
+        return restaurantService.getDailySale();
     }
 
     @GetMapping("/getWeeklySales")
-    public ResponseVO getWeeklySales(){
-        return itemService.getWeeklySales();
+    public ResponseVO getWeeklySale(){
+        return restaurantService.getWeeklySale();
     }
 }

@@ -1,10 +1,7 @@
 package com.example.di.ServiceImpl;
 
 import com.example.di.Dao.OrderMapper;
-import com.example.di.PO.DailyMoney;
-import com.example.di.PO.DailySale;
-import com.example.di.PO.WeeklyMoney;
-import com.example.di.PO.WeeklySale;
+import com.example.di.PO.*;
 import com.example.di.Service.OrderService;
 import com.example.di.VO.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,37 +17,36 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseVO getDailySales(){
-//        try {
-//            List<DailySale> dateTemp = orderMapper.getDailySale();
-//            return ResponseVO.buildSuccess(dateTemp);
-//        }catch (Exception e){
-//            return ResponseVO.buildFailure("返回每日订单销量失败");
-//        }
-        return null;
+       try {
+          List<DailyQuantity> dateTemp = orderMapper.getDailyQuentity();
+           return ResponseVO.buildSuccess(dateTemp);
+       }catch (Exception e){
+           return ResponseVO.buildFailure("返回每日订单销量失败");
+        }
     }
 
     @Override
     public ResponseVO getWeeklySales(){
-//        try{
-//            List<DailySale> dateTemp = orderMapper.getDailySale();
-//            List<WeeklySale> weeklySales=new ArrayList<>();
-//            int i=0;
-//            while(dateTemp.size()-i>6){
-//                WeeklySale weeklySale=new WeeklySale();
-//                int num=0;
-//                weeklySale.setBeginDate(dateTemp.get(i).getDate());
-//                weeklySale.setEndDate(dateTemp.get(i+6).getDate());
-//                for(int j=0;j<7;j++){
-//                    num=num+dateTemp.get(i+j).getNum();
-//                }
-//                weeklySale.setNum(num);
-//                i=i+7;
-//            }
-//            return ResponseVO.buildSuccess(weeklySales);
-//        }catch (Exception e){
-//            return ResponseVO.buildFailure("返回每周订单销量失败");
-//        }
-        return null;
+       try{
+            List<DailyQuantity> dateTemp = orderMapper.getDailyQuentity();
+            List<WeeklySale> weeklySales=new ArrayList<>();
+            int i=0;
+            while(dateTemp.size()-i>6){
+                WeeklySale weeklySale=new WeeklySale();
+                long num=0;
+                weeklySale.setBeginDate(dateTemp.get(i).getDate());
+                weeklySale.setEndDate(dateTemp.get(i+6).getDate());
+                for(int j=0;j<7;j++){
+                    num=num+dateTemp.get(i+j).getNum();
+                }
+                weeklySale.setNum(num);
+                weeklySales.add(weeklySale);
+                i=i+7;
+           }
+            return ResponseVO.buildSuccess(weeklySales);
+        }catch (Exception e){
+           return ResponseVO.buildFailure("返回每周订单销量失败");
+        }
     }
 
     @Override
@@ -78,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
                     num=num+dateTemp.get(i+j).getAmount();
                 }
                 weeklyMoney.setAmount(num);
+                weeklyMonies.add(weeklyMoney);
                 i=i+7;
             }
             return ResponseVO.buildSuccess(weeklyMonies);
