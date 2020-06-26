@@ -42,6 +42,7 @@ public class ItemServiceImpl implements ItemService {
                     num=num+dateTemp.get(i+j).getNum();
                 }
                 itemWeeklySale.setNum(num);
+                weeklySales.add(itemWeeklySale);
                 i=i+7;
             }
             return ResponseVO.buildSuccess(weeklySales);

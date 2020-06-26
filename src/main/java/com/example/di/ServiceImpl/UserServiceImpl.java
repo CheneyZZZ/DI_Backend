@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
                     reginNums.add(1);
                 }else{
                     int j=regins.indexOf(reginsTemp.get(i));
-                    reginNums.set(j,reginNums.get(i)+1);
+                    reginNums.set(j,reginNums.get(j)+1);
                 }
             }
             List<List> reginNumsCouple=new ArrayList<>();

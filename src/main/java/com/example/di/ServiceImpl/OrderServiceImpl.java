@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
                     num=num+dateTemp.get(i+j).getNum();
                 }
                 weeklySale.setNum(num);
+                weeklySales.add(weeklySale);
                 i=i+7;
            }
             return ResponseVO.buildSuccess(weeklySales);
