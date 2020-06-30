@@ -30,11 +30,14 @@ public class UserMapper {
     }
 
     public List<String> getRegins(){
-        String sql="select dwd_user_info.takeout_address from dwd_user_info where takeout_address is not null";
+        String sql="select dwd_user_info.takeout_address,dwd_user_info.shop_address from dwd_user_info where takeout_address is not null or shop_address is not null";
         List<Map<String,Object>> res=hiveDruidTemplate.queryForList(sql);
         List<String> regins=new ArrayList<>();
         for(Map<String,Object> item:res){
-            String address=(String)item.get("dwd_user_info.takeout_address");
+            String address=(String)item.get("dwd_user_info.shop_address");
+            if(address==null){
+                address=(String)item.get("dwd_user_info.takeout_address");
+            }
             regins.add(addressResolution(address));
 
         }

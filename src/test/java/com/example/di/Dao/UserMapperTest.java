@@ -20,7 +20,7 @@ public class UserMapperTest {
     @Test
     public void getRegionsTest(){
         List<String> regins=userMapper.getRegins();
-        Assert.assertEquals(100,regins.size());
+        Assert.assertEquals(1441,regins.size());
         for(String regin:regins){
             System.out.println(regin);
         }
