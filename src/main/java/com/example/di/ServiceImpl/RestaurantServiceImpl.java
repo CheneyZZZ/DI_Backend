@@ -8,11 +8,9 @@ import com.example.di.PO.TakeoutOrder;
 import com.example.di.PO.WeeklyRestaurant;
 import com.example.di.Service.RestaurantService;
 import com.example.di.VO.ResponseVO;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jdo.annotations.Order;
 import java.util.*;
 
 @Service
@@ -25,11 +23,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public ResponseVO getDailySale(){
         try{
-            Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();//返回结果
+            Map<String,Map<Long,DailyRestaurant>> map=new HashMap<String, Map<Long, DailyRestaurant>>();//返回结果
             Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
             for(int i=0;i<takeoutOrders.size();i++){//遍历订单
-                Date tempDate=takeoutOrders.get(i).getCreate_time();//当前订单date
+                String tempDate=takeoutOrders.get(i).getCreate_time().toString().substring(0,10);//当前订单date
                 if(!map.containsKey(tempDate) && takeoutOrders.get(i).getRestaurant_id()!=null ){
                     Restaurant restaurant=restaurantMap.get(takeoutOrders.get(i).getRestaurant_id());
                     DailyRestaurant dailyRestaurant=new DailyRestaurant(restaurant,1);
@@ -59,7 +57,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public ResponseVO getWeeklySale(){
         try{
-            Map<Date,Map<Long,WeeklyRestaurant>> weeklyMap=new HashMap<Date, Map<Long,WeeklyRestaurant>>();
+            Map<Date,Map<Long,WeeklyRestaurant>> weeklyMap=new HashMap<Date, Map<Long, WeeklyRestaurant>>();
             Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();
             Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
