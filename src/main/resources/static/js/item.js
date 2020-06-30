@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     getRequest("/item/getDailySales",
         function (res) {
             var dataset = res.content;

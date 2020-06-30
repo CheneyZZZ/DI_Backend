@@ -32,18 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+            <a class="navbar-brand" href="#">数据集成结果展示</a>
         </div>
     </div>
 </nav>
@@ -68,6 +57,16 @@
                 <li><a href="#order2">订单周销</a></li>
                 <li><a href="#order3">订单日总额</a></li>
                 <li><a href="#order4">订单周总额</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#user"><b>用户主题</b></a></li>
+                <li><a href="#user1">用户男女比</a></li>
+                <li><a href="#user2">用户地区分布</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#restaurant"><b>商家主题</b></a></li>
+                <li><a href="#rest1">商家日销量</a></li>
+                <li><a href="#rest2">商家周销量</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -115,6 +114,28 @@
                 <a name="order4"></a>
                 <div class="chart-container">
                     <canvas id="orderWeeklyMoney" width="70%"></canvas>
+                </div>
+
+                <a name="user"></a>
+                <div style="margin-top: 60px"><h1 class="page-header">用户主题</h1></div>
+                <a name="user1"></a>
+                <div class="chart-container">
+                    <canvas id="userGenderRatio" width="70%"></canvas>
+                </div>
+                <a name="user2"></a>
+                <div class="chart-container">
+                    <canvas id="userRegionList" width="70%"></canvas>
+                </div>
+
+                <a name="restaurant"></a>
+                <div style="margin-top: 60px"><h1 class="page-header">商家主题</h1></div>
+                <a name="rest1"></a>
+                <div class="chart-container">
+                    <canvas id="restaurantDailySales" width="70%"></canvas>
+                </div>
+                <a name="rest2"></a>
+                <div class="chart-container">
+                    <canvas id="restaurantWeeklySales" width="70%"></canvas>
                 </div>
             </div>
         </div>
