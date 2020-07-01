@@ -23,7 +23,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public ResponseVO getDailySale(){
         try{
-            Map<String,Map<Long,DailyRestaurant>> map=new HashMap<String, Map<Long, DailyRestaurant>>();//返回结果
+            LinkedHashMap<String,Map<Long,DailyRestaurant>> map=new LinkedHashMap<>();//返回结果
             Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
             for(int i=0;i<takeoutOrders.size();i++){//遍历订单
@@ -57,7 +57,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public ResponseVO getWeeklySale(){
         try{
-            Map<Date,Map<Long,WeeklyRestaurant>> weeklyMap=new HashMap<Date, Map<Long, WeeklyRestaurant>>();
+            LinkedHashMap<Date,Map<Long,WeeklyRestaurant>> weeklyMap=new LinkedHashMap<>();
             Map<Date,Map<Long,DailyRestaurant>> map=new HashMap<Date, Map<Long,DailyRestaurant>>();
             Map<Long,Restaurant> restaurantMap=restaurantMapper.getAllResaurants();
             List<TakeoutOrder> takeoutOrders=orderMapper.getTakeoutOrders();
